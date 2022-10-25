@@ -1,0 +1,15 @@
+# Hand-made
+controller_manager_ns: /
+controller_list:
+  - name: arm_controller
+    action_ns: follow_joint_trajectory
+    type: FollowJointTrajectory
+    default: true
+    joints:
+      - base_joint
+      - y_joint
+      - uball_joint
+      - x_joint
+      - mball_joint
+      - wrist_joint
+      - hand_joint

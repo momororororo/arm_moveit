@@ -1,0 +1,56 @@
+<?xml version="1.0" ?>
+<!--This does not replace URDF, and is not an extension of URDF.
+    This is a format for representing semantic information about the robot structure.
+    A URDF file must exist for this robot as well, where the joints and the links that are referenced are defined
+-->
+<robot name="test_robot">
+    <!--GROUPS: Representation of a set of joints and links. This can be useful for specifying DOF to plan for, defining arms, end effectors, etc-->
+    <!--LINKS: When a link is specified, the parent joint of that link (if it exists) is automatically included-->
+    <!--JOINTS: When a joint is specified, the child link of that joint (which will always exist) is automatically included-->
+    <!--CHAINS: When a chain is specified, all the links along the chain (including endpoints) are included in the group. Additionally, all the joints that are parents to included links are also included. This means that joints along the chain and the parent joint of the base link are included in the group-->
+    <!--SUBGROUPS: Groups can also be formed by referencing to already defined group names-->
+    <group name="arm">
+        <joint name="base_joint" />
+        <joint name="y_joint" />
+        <joint name="uball_joint" />
+        <joint name="x_joint" />
+        <joint name="mball_joint" />
+        <joint name="wrist_joint" />
+        <joint name="hand_joint" />
+        <joint name="end_arm_joint" />
+        <joint name="f1_joint" />
+        <joint name="f1_z_pris" />
+    </group>
+    <group name="hand">
+        <joint name="f1_joint" />
+        <joint name="f2_joint" />
+        <joint name="f3_joint" />
+        <joint name="f4_joint" />
+        <joint name="f5_joint" />
+        <joint name="f6_joint" />
+        <joint name="end_hand_joint" />
+        <joint name="fe_joint" />
+        <joint name="hand_joint" />
+        <joint name="wrist_joint" />
+        <joint name="f1_z_pris" />
+    </group>
+    <!--END EFFECTOR: Purpose: Represent information about an end effector.-->
+    <end_effector name="end_hand" parent_link="end_hand" group="hand" />
+    <end_effector name="end_arm" parent_link="end_arm" group="arm" />
+    <!--DISABLE COLLISIONS: By default it is assumed that any link of the robot could potentially come into collision with any other link in the robot. This tag disables collision checking between a specified pair of links. -->
+    <disable_collisions link1="base" link2="upperarm" reason="User" />
+    <disable_collisions link1="dummy_finger" link2="finger1" reason="User" />
+    <disable_collisions link1="dummy_finger" link2="hand" reason="User" />
+    <disable_collisions link1="finger1" link2="finger2" reason="User" />
+    <disable_collisions link1="finger2" link2="finger3" reason="User" />
+    <disable_collisions link1="finger3" link2="finger4" reason="User" />
+    <disable_collisions link1="finger4" link2="finger5" reason="User" />
+    <disable_collisions link1="finger5" link2="finger6" reason="User" />
+    <disable_collisions link1="finger6" link2="fingerend" reason="User" />
+    <disable_collisions link1="hand" link2="wrist" reason="User" />
+    <disable_collisions link1="lowerarm" link2="middleball" reason="User" />
+    <disable_collisions link1="lowerarm" link2="wrist" reason="User" />
+    <disable_collisions link1="middlearm" link2="middleball" reason="User" />
+    <disable_collisions link1="middlearm" link2="upperball" reason="User" />
+    <disable_collisions link1="upperarm" link2="upperball" reason="User" />
+</robot>
